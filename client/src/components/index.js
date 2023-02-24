@@ -1,7 +1,13 @@
 import {default as Form} from './Form/Form';
 import {default as Posts} from './Posts/Posts';
+import {default as Navbar} from './Navbar/Navbar';
+import {default as Home} from './Home/Home';
+import {default as Auth} from './Auth/Auth';
 
 export {
     Form,
-    Posts
+    Posts,
+    Navbar,
+    Home,
+    Auth
 }

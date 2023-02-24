@@ -1,6 +1,5 @@
 import postMessage from "../models/postMessage.js";
 import mongoose from 'mongoose';
-import express from 'express';
 
 
 export const getPosts = async (req,res)=>{
