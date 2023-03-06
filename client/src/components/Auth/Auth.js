@@ -7,35 +7,44 @@ import { useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
 import Input from './Input';
+import {signin, signup} from '../../actions/auth';
 import useStyles from './Styles';
+
+
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
   const [isSignUp, setIsSignUp] = useState(false);
-
+  const [formData, setFormData] = useState(initialState);
   const history = useHistory();
-  const dipsatch = useDispatch();
+  const dispatch = useDispatch();
  
-  const handleSubmit= ()=>{
-
+  const handleSubmit= (e)=>{
+    e.preventDefault();
+    if(isSignUp){
+      dispatch(signup(formData, history))
+    }else{
+      dispatch(signin(formData, history))
+    }
   }
-  const handleChange = () =>{
-
+  const handleChange = (e) =>{
+    setFormData({...formData,[e.target.name] : e.target.value});
   }
   const handleShowPassword = () =>{
     setShowPassword((prevShowPassword)=> !prevShowPassword);
-    handleShowPassword(false);
   }
 
   const SwitchMode = () => {
     setIsSignUp((previousIsSignup)=> !previousIsSignup)
   }
+  
   const googleSuccess = async (res) =>{
     var result = jwt_decode(res?.credential); 
     let token = res?.credential;
     try {
-      dipsatch({type : 'AUTH', data:{ result, token}});
+      dispatch({type : 'AUTH', data:{ result, token}});
 
       history.push('/');
     } catch (error) {
@@ -66,7 +75,7 @@ const Auth = () => {
            <Input name='email' label='email address' handleChange={handleChange}  type='email' />
            <Input name='password' label='Password' handleChange={handleChange}  type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
           {isSignUp && (
-            <Input name='confirm password' label='repeat password' handleChange={handleChange} type='password' />
+            <Input name='confirmPassword' label='repeat password' handleChange={handleChange} type='password' />
           )}
           </Grid>
           <Button type='submit' fullWidth variant='contained' color="primary" className={classes.submit}>
