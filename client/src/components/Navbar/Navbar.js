@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 
 import useStyles from './styles';
-import {memories} from '../../images';
+import {memoriesLogo,memoriesText} from '../../images';
 
 
 const Navbar = () => {
@@ -38,10 +38,10 @@ const Navbar = () => {
     
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
-        <div className={classes.brandContainer}>
-            <Typography component={Link} to='/'className={classes.heading} variant="h5" align="center">Memories</Typography>
-            <img className={classes.image} src={memories} alt="icon" height="60" />
-        </div>
+        <Link to="/" className={classes.brandContainer}>
+            <img src={memoriesText} alt="icon" height="45px" />
+            <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" />
+        </Link>
         <Toolbar className={classes.toolbar}>
         { user? (
             <div className={classes.profile}>
