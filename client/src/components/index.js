@@ -5,6 +5,8 @@ import {default as Home} from './Home/Home';
 import {default as Auth} from './Auth/Auth';
 import {default as Pagination} from './Pagination/Pagination';
 import {default as PostDetails} from './PostDetails/PostDetails';
+import {default as CommentSection} from './PostDetails/CommentSection';
+
 
 export {
     Form,
@@ -13,5 +15,6 @@ export {
     Home,
     Auth,
     Pagination,
-    PostDetails
+    PostDetails,
+    CommentSection
 }
